@@ -39,6 +39,7 @@ namespace Mango.Web.Controllers
         {
             
             ResponseDto? response = await _cartService.ApplyCouponAsync(cartDto);
+            
             if (response != null & response.IsSuccess)
             {
                 TempData["success"] = "Cart updated successfully";
