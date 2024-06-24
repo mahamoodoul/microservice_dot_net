@@ -9,7 +9,6 @@ namespace Mango.Services.ProductAPI.Controllers
 {
     [Route("api/product")]
     [ApiController]
-    // [Authorize]
     public class ProductAPIController : ControllerBase
     {
         private readonly AppDbContext _db;
@@ -68,16 +67,18 @@ namespace Mango.Services.ProductAPI.Controllers
 
                 if (ProductDto.Image != null)
                 {
+                   
                     string fileName = product.ProductId + Path.GetExtension(ProductDto.Image.FileName);
                     string filePath = @"wwwroot\ProductImages\" + fileName;
-                    
+
                     //I have added the if condition to remove the any image with same name if that exist in the folder by any change
-                    var directoryLocation = Path.Combine(Directory.GetCurrentDirectory(), filePath);
-                    FileInfo file = new FileInfo(directoryLocation);
-                    if (file.Exists)
-                    {
-                        file.Delete();
-                    }
+                        var directoryLocation = Path.Combine(Directory.GetCurrentDirectory(), filePath);
+                        FileInfo file = new FileInfo(directoryLocation);
+                        if (file.Exists)
+                        {
+                            file.Delete();
+                        }
+
                     var filePathDirectory = Path.Combine(Directory.GetCurrentDirectory(), filePath);
                     using (var fileStream = new FileStream(filePathDirectory, FileMode.Create))
                     {
@@ -110,7 +111,6 @@ namespace Mango.Services.ProductAPI.Controllers
         {
             try
             {
-                
                 Product product = _mapper.Map<Product>(ProductDto);
 
                 if (ProductDto.Image != null)
@@ -139,7 +139,6 @@ namespace Mango.Services.ProductAPI.Controllers
 
 
                 _db.Products.Update(product);
-                
                 _db.SaveChanges();
 
                 _response.Result = _mapper.Map<ProductDto>(product);
