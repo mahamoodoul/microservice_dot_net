@@ -1,0 +1,41 @@
+﻿@model IEnumerable<StoreApp.Models.Product>
+
+@{
+    ViewData["Title"] = "Product List";
+}
+
+<h1 class="mb-4">Product List</h1>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-warning">
+        No products found (or Model is null).
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered align-middle">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col" style="width: 1px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>
+                        <form asp-controller="Orders" asp-action="PlaceOrder" method="post" class="d-inline">
+                            <input type="hidden" name="productId" value="@product.Id" />
+                            <button type="submit" class="btn btn-primary btn-sm">Order</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

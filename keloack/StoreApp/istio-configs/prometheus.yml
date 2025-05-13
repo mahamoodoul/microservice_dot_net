@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'storeapp'
+    static_configs:
+      - targets: ['localhost:5279']  # Your .NET 8 storeapp metrics endpoint

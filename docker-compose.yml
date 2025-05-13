@@ -1,0 +1,20 @@
+services:
+  authapi:
+    build:
+      context: .
+      dockerfile: Mango.Services.AuthAPI/Dockerfile
+    container_name: mango_auth_api
+    ports:
+      - "7002:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - mango-network
+
+networks:
+  mango-network:
+    driver: bridge
+    
+    
+
+

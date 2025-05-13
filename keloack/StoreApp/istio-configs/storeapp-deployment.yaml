@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storeapp
+  namespace: storeapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storeapp
+  template:
+    metadata:
+      labels:
+        app: storeapp
+    spec:
+      containers:
+        - name: storeapp
+          image: mdmi007/storeapp:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: storeapp-service
+  namespace: storeapp
+spec:
+  selector:
+    app: storeapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

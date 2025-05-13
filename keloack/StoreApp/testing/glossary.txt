@@ -1,0 +1,75 @@
+% ----------------------------------------------------------------
+%  Acronym definitions  (in the PREAMBLE, after \makeglossaries)
+% ----------------------------------------------------------------
+\newacronym{abac}{ABAC}{Attribute‑Based Access Control}
+\newacronym{api}{API}{Application Programming Interface}
+\newacronym{cicd}{CI\slash CD}{Continuous Integration \slash Continuous Deployment}
+\newacronym{csr}{CSR}{Certificate Signing Request}
+\newacronym{csrf}{CSRF}{Cross‑Site Request Forgery}
+\newacronym{ddos}{DDoS}{Distributed Denial of Service}
+\newacronym{dev-ops}{DevOps}{Development and Operations}
+\newacronym{dos}{DoS}{Denial of Service}
+\newacronym{gdpr}{GDPR}{General Data Protection Regulation}
+\newacronym{http}{HTTP}{Hypertext Transfer Protocol}
+\newacronym{https}{HTTPS}{Hypertext Transfer Protocol Secure}
+\newacronym{iam}{IAM}{Identity and Access Management}
+\newacronym{ids}{IDS}{Intrusion Detection System}
+\newacronym{jwt}{JWT}{JSON Web Token}
+\newacronym{mfa}{MFA}{Multi‑Factor Authentication}
+\newacronym{mtls}{mTLS}{Mutual Transport Layer Security}
+\newacronym{oauth}{OAuth}{Open Authorization}
+\newacronym{oidc}{OIDC}{OpenID Connect}
+\newacronym{opa}{OPA}{Open Policy Agent}
+% \newacronym{pasta}{PASTA}{Process for Attack Simulation and Threat Analysis}
+\newacronym{rbac}{RBAC}{Role‑Based Access Control}
+\newacronym{rest}{REST}{Representational State Transfer}
+\newacronym{sdn}{SDN}{Software‑Defined Networking}
+% \newacronym{stride}{STRIDE}{Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege}
+\newacronym{tls}{TLS}{Transport Layer Security}
+\newacronym{vpn}{VPN}{Virtual Private Network}
+\newacronym{zta}{ZTA}{Zero‑Trust Architecture}
+\newacronym{ztn}{ZTN}{Zero‑Trust Network}
+
+% ----------------------------------------------------------------
+%  Glossary Entries (Key Terms)
+% ----------------------------------------------------------------
+\newglossaryentry{microservice}{
+  name        = microservice,
+  plural      = microservices,
+  description = {A small, independently deployable service that focuses on a single business capability}
+}
+
+\newglossaryentry{service-mesh}{
+  name        = {service mesh},
+  description = {A dedicated infrastructure layer for handling service‑to‑service communication, security and observability}
+}
+
+\newglossaryentry{vault}{
+  name        = {Vault},
+  description = {A HashiCorp tool for secrets management, encryption as‑a‑service, and identity‑based access}
+}
+
+\newglossaryentry{devops}{
+  name        = DevOps,
+  description = {A set of practices that combines software development (Dev) and IT operations (Ops) to shorten the development lifecycle and provide continuous delivery with high software quality. }
+}
+
+\newglossaryentry{microsegmentation}{
+ name        = Microsegmentation, 
+ description = {
+    A security technique that divides a network into isolated segments at the workload or application level to reduce the attack surface and prevent lateral movement by threats.}
+}
+
+\newglossaryentry{stride}{
+ name        = STRIDE,
+ description = {
+    A threat modeling framework developed by Microsoft that categorizes security threats into six types: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege.}
+}
+
+\newglossaryentry{pasta}{
+ name        = PASTA,
+ description = {
+    An acronym for Process for Attack Simulation and Threat Analysis, a risk-centric threat modeling methodology that guides organizations through seven stages to identify and mitigate security threats.}
+}
+
+

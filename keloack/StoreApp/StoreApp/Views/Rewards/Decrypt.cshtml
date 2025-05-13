@@ -1,0 +1,22 @@
+@model StoreApp.Models.DecryptRewardViewModel
+
+@{
+    ViewData["Title"] = "Decrypt Reward Discount";
+}
+
+<h2>Decrypt Reward Discount</h2>
+
+<form asp-action="Decrypt" method="post">
+    <div class="form-group">
+        <label asp-for="RewardId"></label>
+        <input asp-for="RewardId" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Decrypt</button>
+</form>
+
+@if (Model.DecryptedDiscount.HasValue)
+{
+    <div class="alert alert-success mt-3">
+        <strong>Decrypted Discount:</strong> @Model.DecryptedDiscount
+    </div>
+}

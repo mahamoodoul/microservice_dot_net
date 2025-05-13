@@ -1,0 +1,117 @@
+version: '3.8'
+services:
+  # =======================
+  # 1) AUTH API
+  # =======================
+  authapi:
+    build:
+      context: ./Mango.Services.AuthAPI
+      dockerfile: Dockerfile
+    container_name: mango_auth_api
+    ports:
+      - "5010:80"   # Host port 5010 -> container port 80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - mango-network
+
+  # =======================
+  # 2) COUPON API
+  # =======================
+  couponapi:
+    build:
+      context: ./Mango.Services.CouponAPI
+      dockerfile: Dockerfile
+    container_name: mango_coupon_api
+    ports:
+      - "5011:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - mango-network
+
+  # =======================
+  # 3) EMAIL API
+  # =======================
+  emailapi:
+    build:
+      context: ./Mango.Services.EmailAPI
+      dockerfile: Dockerfile
+    container_name: mango_email_api
+    ports:
+      - "5012:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - mango-network
+
+  # =======================
+  # 4) ORDER API
+  # =======================
+  orderapi:
+    build:
+      context: ./Mango.Services.OrderAPI
+      dockerfile: Dockerfile
+    container_name: mango_order_api
+    ports:
+      - "5013:80"
+    networks:
+      - mango-network
+
+  # =======================
+  # 5) PRODUCT API
+  # =======================
+  productapi:
+    build:
+      context: ./Mango.Services.ProductAPI
+      dockerfile: Dockerfile
+    container_name: mango_product_api
+    ports:
+      - "5014:80"
+    networks:
+      - mango-network
+
+  # =======================
+  # 6) REWARD API
+  # =======================
+  rewardapi:
+    build:
+      context: ./Mango.Services.RewardAPI
+      dockerfile: Dockerfile
+    container_name: mango_reward_api
+    ports:
+      - "5015:80"
+    networks:
+      - mango-network
+
+  # =======================
+  # 7) SHOPPING CART API
+  # =======================
+  shoppingcartapi:
+    build:
+      context: ./Mango.Services.ShoppingCartAPI
+      dockerfile: Dockerfile
+    container_name: mango_shoppingcart_api
+    ports:
+      - "5016:80"
+    networks:
+      - mango-network
+
+  # =======================
+  # 8) WEB (OPTIONAL)
+  # =======================
+  mango_web:
+    build:
+      context: ./Mango.Web
+      dockerfile: Dockerfile
+    container_name: mango_web_app
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - mango-network
+
+networks:
+  mango-network:
+    driver: bridge

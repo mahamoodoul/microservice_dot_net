@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  storeapp:
+    image: mdmi007/storeapp:latest
+    environment:
+      - Keycloak__Realm=StoreRealm
+      - Keycloak__AuthServerUrl=http://host.docker.internal:8080/realms/StoreRealm
+      - Keycloak__ClientId=store-app-client
+      - Keycloak__ClientSecret=Pw8PHlN9Btq5WO8Fy8aIeTMASIyr4Y8g
+    ports:
+      - "5010:80"
+    depends_on:
+      - keycloak
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    command: start-dev
+    ports:
+      - "8080:8080"
+

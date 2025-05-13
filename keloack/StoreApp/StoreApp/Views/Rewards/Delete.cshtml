@@ -1,0 +1,31 @@
+@model StoreApp.Models.Reward
+
+@{
+    ViewData["Title"] = "Delete Reward";
+}
+
+<h1>Delete Reward</h1>
+
+<h4>Reward</h4>
+<hr />
+<dl class="row">
+    <dt class = "col-sm-2">
+        Name
+    </dt>
+    <dd class = "col-sm-10">
+        @Model.Name
+    </dd>
+    <dt class = "col-sm-2">
+        Discount
+    </dt>
+    <dd class = "col-sm-10">
+        @Model.Discount
+    </dd>
+</dl>
+
+
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+    <p>Are you sure you want to delete "@Model.Name"?</p>
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-action="Index">Cancel</a>
+</form>

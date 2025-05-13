@@ -1,0 +1,42 @@
+@model List<StoreApp.Models.OrderInfoViewModel>
+
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<h2>My Orders</h2>
+
+@if (Model == null || Model.Count == 0)
+{
+    <div class="alert alert-warning">
+        No orders found.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Order #</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Ordered At</th>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.ProductName</td>
+                    <td>@order.ProductPrice.ToString("C")</td>
+                    <td>@order.CreatedAt</td>
+                    <td>@order.Username</td>
+                    <td>@order.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

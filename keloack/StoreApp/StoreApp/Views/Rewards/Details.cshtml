@@ -1,0 +1,29 @@
+@model StoreApp.Models.Reward
+
+@{
+    ViewData["Title"] = "Reward Details";
+}
+
+<h1>Reward Details</h1>
+
+<div>
+    <h4>Reward</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Name
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Name
+        </dd>
+        <dt class = "col-sm-2">
+            Discount
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Discount
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
