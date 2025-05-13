@@ -110,24 +110,35 @@ namespace Mango.Web.Controllers
         private async Task SignInUser(LoginResponseDto model)
         {
             var handler = new JwtSecurityTokenHandler();
-
             var jwt = handler.ReadJwtToken(model.Token);
 
             var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
-            identity.AddClaim(new Claim(JwtRegisteredClaimNames.Email, 
-                jwt.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Email).Value));
-            identity.AddClaim(new Claim(JwtRegisteredClaimNames.Sub,
-                jwt.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Sub).Value));
-            identity.AddClaim(new Claim(JwtRegisteredClaimNames.Name,
-                jwt.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Name).Value));
+            
+            var emailClaim = jwt.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Email);
+            var subClaim = jwt.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Sub);
+            var nameClaim = jwt.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Name);
+            var roleClaim = jwt.Claims.FirstOrDefault(u => u.Type == "role");
 
+            if (emailClaim != null)
+            {
+                identity.AddClaim(new Claim(JwtRegisteredClaimNames.Email, emailClaim.Value));
+                identity.AddClaim(new Claim(ClaimTypes.Name, emailClaim.Value));
+            }
 
-            identity.AddClaim(new Claim(ClaimTypes.Name,
-                jwt.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Email).Value));
-            identity.AddClaim(new Claim(ClaimTypes.Role,
-                jwt.Claims.FirstOrDefault(u => u.Type == "role").Value));
+            if (subClaim != null)
+            {
+                identity.AddClaim(new Claim(JwtRegisteredClaimNames.Sub, subClaim.Value));
+            }
 
+            if (nameClaim != null)
+            {
+                identity.AddClaim(new Claim(JwtRegisteredClaimNames.Name, nameClaim.Value));
+            }
 
+            if (roleClaim != null)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, roleClaim.Value));
+            }
 
             var principal = new ClaimsPrincipal(identity);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);

@@ -50,30 +50,6 @@ builder.Services.AddSwaggerGen(option =>
 builder.AddAppAuthetication();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
@@ -86,7 +62,7 @@ if (app.Environment.IsDevelopment())
 }
 
 Stripe.StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
